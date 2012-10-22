@@ -13,3 +13,6 @@
 [submodule "bundle/AscyncCommand"]
 	path = bundle/AscyncCommand
 	url = http://github.com/pydave/AsyncCommand.git
+[submodule "bundle/AsyncCommand"]
+	path = bundle/AsyncCommand
+	url = http://github.com/pydave/AsyncCommand.git
