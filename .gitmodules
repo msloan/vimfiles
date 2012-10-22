@@ -1,3 +1,15 @@
 [submodule "bundle/vim-pathogen"]
 	path = bundle/vim-pathogen
 	url = http://github.com/tpope/vim-pathogen.git
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = http://github.com/scrooloose/nerdtree.git
+[submodule "bundle/buflist"]
+	path = bundle/buflist
+	url = http://github.com/vim-scripts/buflist.git
+[submodule "bundle/bufexpolorer"]
+	path = bundle/bufexpolorer
+	url = http://github.com/c9s/bufexplorer.git
+[submodule "bundle/AscyncCommand"]
+	path = bundle/AscyncCommand
+	url = http://github.com/pydave/AsyncCommand.git
