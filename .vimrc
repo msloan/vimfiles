@@ -1,3 +1,6 @@
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 colorscheme wombat
 syntax on
 set autochdir
@@ -103,5 +106,4 @@ let NERDTreeChDirMode=2
 
 autocmd FileType nerdtree setlocal norelativenumber
 " ********************************************
-"let Findstr_Default_Filelist = 'C:\\pwdev\\spigot';
 let Findstr_Default_Filelist = '*.cpp'
