@@ -60,14 +60,11 @@ set foldminlines=5
 autocmd BufWrite * :if &readonly | silent !start p4 edit %
 set autoread
 
-nnoremap s "_ciw<C-r>"<Esc>
-vnoremap s "_dp
-
 " Treat pw script files as c files
 au BufNewFile,BufRead *.scr set filetype=c
 
 :command! -nargs=* AC AsyncCommand <args>
-nnoremap <F12> :cd %:h<Enter>:AC cmd<Enter>
+nnoremap <F12> >:AC cmd<Enter>
 
 
 fun! SetupRNU()
