@@ -97,7 +97,7 @@ set noautochdir
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 let NERDTreeMininmalUI=1
-let NERDTreeShowBookmarks=0
+let NERDTreeShowBookmarks=1
 let NERDChristmasTree=0
 let NERDTreeChDirMode=2
 

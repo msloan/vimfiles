@@ -4,18 +4,12 @@
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = http://github.com/scrooloose/nerdtree.git
-[submodule "bundle/buflist"]
-	path = bundle/buflist
-	url = http://github.com/vim-scripts/buflist.git
 [submodule "bundle/bufexpolorer"]
 	path = bundle/bufexpolorer
 	url = http://github.com/c9s/bufexplorer.git
-[submodule "bundle/AscyncCommand"]
-	path = bundle/AscyncCommand
-	url = http://github.com/pydave/AsyncCommand.git
 [submodule "bundle/AsyncCommand"]
 	path = bundle/AsyncCommand
 	url = http://github.com/pydave/AsyncCommand.git
-[submodule "bundles/vim-surround"]
-	path = bundles/vim-surround
-	url = git://github.com/tpope/vim-surround.git
+[submodule "bundle/vim-surround"]
+	path = bundle/vim-surround
+	url = http://github.com/tpope/vim-surround.git
