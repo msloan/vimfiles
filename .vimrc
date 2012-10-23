@@ -115,7 +115,7 @@ nnoremap <F12> >:As cmd<Enter>
 command! -nargs=+ -complete=file Af call s:AsyncFindstr(<q-args>)
 
 function! s:AsyncFindstr(query)
-    let grep_cmd = "findstr /n ".a:query
+    let grep_cmd = "findstr /nsi ".a:query
     call asynccommand#run(grep_cmd, asynchandler#quickfix(&grepformat, '[Found: %s] findstr ' . a:query))
 endfunction
 " ////////////////////////////////////////////
