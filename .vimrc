@@ -1,6 +1,8 @@
+" setup pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
+
 colorscheme wombat
 syntax on
 set autochdir
@@ -32,10 +34,11 @@ set backspace=indent,eol,start
 set tabstop=4
 set comments=f://
 set ignorecase smartcase
+set formatoptions=crql
 
 " dont indent public:
 set cino=g0,f
-autocmd BufEnter * lcd %:p:h
+"autocmd BufEnter * lcd %:p:h
 
 hi Cursor guibg=red 
 hi Cursor guifg=white 
@@ -63,10 +66,6 @@ set autoread
 " Treat pw script files as c files
 au BufNewFile,BufRead *.scr set filetype=c
 
-:command! -nargs=* AC AsyncCommand <args>
-nnoremap <F12> >:AC cmd<Enter>
-
-
 fun! SetupRNU()
     if &ft =~ 'nerdtree'
         return
@@ -88,9 +87,9 @@ nnoremap <Esc> :noh<Enter>
 " Don't switch working directories when opening files
 set noautochdir
 
-" ********************************************
+" ////////////////////////////////////////////
 " 				NERDTree
-" ********************************************
+" ////////////////////////////////////////////
 :command! -nargs=* Ex NERDTree <args>
 
 " close vim if only window left is NERDTree
@@ -102,5 +101,21 @@ let NERDChristmasTree=0
 let NERDTreeChDirMode=2
 
 autocmd FileType nerdtree setlocal norelativenumber
-" ********************************************
-let Findstr_Default_Filelist = '*.cpp'
+" ////////////////////////////////////////////
+
+" ////////////////////////////////////////////
+" 				AsyncCommand
+" ////////////////////////////////////////////
+:command! -nargs=* Ac AsyncCommand <args>
+nnoremap <F12> >:Ac cmd<Enter>
+
+:command! -nargs=* As AsyncShell <args>
+nnoremap <F12> >:As cmd<Enter>
+
+command! -nargs=+ -complete=file Af call s:AsyncFindstr(<q-args>)
+
+function! s:AsyncFindstr(query)
+    let grep_cmd = "findstr /n ".a:query
+    call asynccommand#run(grep_cmd, asynchandler#quickfix(&grepformat, '[Found: %s] findstr ' . a:query))
+endfunction
+" ////////////////////////////////////////////
