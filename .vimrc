@@ -66,7 +66,7 @@ set autoread
 " Treat pw script files as c files
 au BufNewFile,BufRead *.scr set filetype=c
 
-fun! SetupRNU()
+fun! SetRNU()
     if &ft =~ 'nerdtree'
         return
     endif
@@ -74,12 +74,20 @@ fun! SetupRNU()
 	set rnu
 endfun
 
-au FocusLost * call SetupRNU()
-au FocusGained * call SetupRNU()
-au WinLeave * call SetupRNU()
-au WinEnter * call SetupRNU()
-au CmdwinEnter * call SetupRNU()
-au CmdwinLeave * call SetupRNU()
+fun! SetNU()
+    if &ft =~ 'nerdtree'
+        return
+    endif
+	" Relative line number mapping
+	set nu
+endfun
+
+au FocusLost * call SetNU()
+au FocusGained * call SetRNU()
+au WinLeave * call SetNU()
+au WinEnter * call SetRNU()
+au CmdwinEnter * call SetNU()
+au CmdwinLeave * call SetRNU()
 
 " Esc gets rid of search highlighting
 nnoremap <Esc> :noh<Enter>
@@ -99,6 +107,7 @@ let NERDTreeMininmalUI=1
 let NERDTreeShowBookmarks=1
 let NERDChristmasTree=0
 let NERDTreeChDirMode=2
+let NERDTreeIgnore=['\.meta', '\.swp', '\.unity', 'cubeGen$[[dir]]', 'effects$[[dir]]', 'Objects$[[dir]]', 'scene$[[dir]]', 'Standard Assets$[[dir]]', 'StrumpyShaderEditor$[[dir]]', 'Audio$[[dir]]', 'Characters$[[dir]]', 'temp$[[dir]]', 'Movies$[[dir]]','Data$[[dir]]', 'Resources$[[dir]]']
 
 autocmd FileType nerdtree setlocal norelativenumber
 " ////////////////////////////////////////////
