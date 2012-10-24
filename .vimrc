@@ -66,6 +66,8 @@ set autoread
 " Treat pw script files as c files
 au BufNewFile,BufRead *.scr set filetype=c
 
+"""""""""""""""""""""""""""""""""""""""""""""
+" Setup relative line mapping
 fun! SetRNU()
     if &ft =~ 'nerdtree'
         return
@@ -88,6 +90,12 @@ au WinLeave * call SetNU()
 au WinEnter * call SetRNU()
 au CmdwinEnter * call SetNU()
 au CmdwinLeave * call SetRNU()
+
+" for entering/exiting command-line
+nnoremap : :set nu<Enter>:
+cnoremap <Esc> set rnu<Enter>
+"""""""""""""""""""""""""""""""""""""""""""""
+
 
 " Esc gets rid of search highlighting
 nnoremap <Esc> :noh<Enter>
