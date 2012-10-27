@@ -34,7 +34,7 @@ set backspace=indent,eol,start
 set tabstop=4
 set comments=f://
 set ignorecase smartcase
-set formatoptions=crql
+set formatoptions=cql
 
 " dont indent public:
 set cino=g0,f
@@ -92,8 +92,8 @@ au CmdwinEnter * call SetNU()
 au CmdwinLeave * call SetRNU()
 
 " for entering/exiting command-line
-nnoremap : :set nu<Enter>:
-cnoremap <Esc> set rnu<Enter>
+nnoremap : :call SetNU()<Enter>:
+cnoremap <Esc> :call SetRNU()<Enter>
 """""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -115,7 +115,8 @@ let NERDTreeMininmalUI=1
 let NERDTreeShowBookmarks=1
 let NERDChristmasTree=0
 let NERDTreeChDirMode=2
-let NERDTreeIgnore=['\.meta', '\.swp', '\.unity', 'cubeGen$[[dir]]', 'effects$[[dir]]', 'Objects$[[dir]]', 'scene$[[dir]]', 'Standard Assets$[[dir]]', 'StrumpyShaderEditor$[[dir]]', 'Audio$[[dir]]', 'Characters$[[dir]]', 'temp$[[dir]]', 'Movies$[[dir]]','Data$[[dir]]', 'Resources$[[dir]]']
+let NERDTreeIgnore=['\.meta', '\.swp']
+let g:NERDTreeDirArrows=0
 
 autocmd FileType nerdtree setlocal norelativenumber
 " ////////////////////////////////////////////
@@ -136,3 +137,18 @@ function! s:AsyncFindstr(query)
     call asynccommand#run(grep_cmd, asynchandler#quickfix(&grepformat, '[Found: %s] findstr ' . a:query))
 endfunction
 " ////////////////////////////////////////////
+
+" Reduces the noise of unity log files
+fun! CleanUnityLog()
+	:g/^\s*$/d
+	:g/WriteWindowsDebugString called and HOST/d
+	:g/(Filename/d
+ endfunction
+:command! CleanUnityLog call CleanUnityLog()
+
+" put current line number in buffer
+nnoremap ,n <Esc>:let @*=line(".")<CR>
+
+au BufNewFile,BufRead *.py
+	\ setlocal tabstop=4
+	\ setlocal expandtab

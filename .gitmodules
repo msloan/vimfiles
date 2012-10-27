@@ -16,3 +16,6 @@
 [submodule "bundle/vim-repeat"]
 	path = bundle/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule "bundle/mru.vim"]
+	path = bundle/mru.vim
+	url = http://github.com/vim-scripts/mru.vim.git
