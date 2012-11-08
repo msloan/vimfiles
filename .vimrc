@@ -103,40 +103,28 @@ nnoremap <Esc> :noh<Enter>
 " Don't switch working directories when opening files
 set noautochdir
 
-" ////////////////////////////////////////////
-" 				NERDTree
-" ////////////////////////////////////////////
+" NERDTree.vim
 :command! -nargs=* Ex NERDTree <args>
-
 " close vim if only window left is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
 let NERDTreeMininmalUI=1
 let NERDTreeShowBookmarks=1
 let NERDChristmasTree=0
 let NERDTreeChDirMode=2
 let NERDTreeIgnore=['\.meta', '\.swp']
 let g:NERDTreeDirArrows=0
-
 autocmd FileType nerdtree setlocal norelativenumber
-" ////////////////////////////////////////////
 
-" ////////////////////////////////////////////
-" 				AsyncCommand
-" ////////////////////////////////////////////
+" AsyncCommand.vim
 :command! -nargs=* Ac AsyncCommand <args>
 nnoremap <F12> >:Ac cmd<Enter>
-
 :command! -nargs=* As AsyncShell <args>
 nnoremap <F12> >:As cmd<Enter>
-
 command! -nargs=+ -complete=file Af call s:AsyncFindstr(<q-args>)
-
 function! s:AsyncFindstr(query)
     let grep_cmd = "findstr /nsi ".a:query
     call asynccommand#run(grep_cmd, asynchandler#quickfix(&grepformat, '[Found: %s] findstr ' . a:query))
 endfunction
-" ////////////////////////////////////////////
 
 " Reduces the noise of unity log files
 fun! CleanUnityLog()
@@ -149,6 +137,11 @@ fun! CleanUnityLog()
 " put current line number in buffer
 nnoremap ,n <Esc>:let @*=line(".")<CR>
 
-au BufNewFile,BufRead *.py
-	\ setlocal tabstop=4
-	\ setlocal expandtab
+
+au BufNewFile,BufRead *.py setlocal expandtab
+
+" TODO: snippets for comment headers, singletons, comment lines
+
+" linediff.vim
+noremap \ldt :Linediff<CR>
+noremap \ldo :LinediffReset<CR>
