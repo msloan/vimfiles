@@ -3,6 +3,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+
 colorscheme wombat
 syntax on
 set autochdir
@@ -154,3 +155,5 @@ au BufNewFile,BufRead *.py setlocal expandtab
 noremap \ldt :Linediff<CR>
 noremap \ldo :LinediffReset<CR>
 nnoremap gm :call cursor(0, len(getline('.'))/2)<cr>
+
+nnoremap <C-Tab> :bn<CR>
