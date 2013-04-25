@@ -45,7 +45,6 @@ hi Cursor guifg=white
 " no cursor blinking
 set guicursor=a:blinkon0
 
-
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
@@ -92,21 +91,19 @@ au CmdwinEnter * call SetNU()
 au CmdwinLeave * call SetRNU()
 
 " for entering/exiting command-line
-nnoremap : :call SetNU()<Enter>:
-cnoremap <Esc> :call SetRNU()<Enter>
+"nnoremap : :call SetNU()<Enter>:
+"cnoremap <Esc> :call SetRNU()<Enter>
 """""""""""""""""""""""""""""""""""""""""""""
 
 
 " Esc gets rid of search highlighting
-nnoremap <Esc> :noh<Enter>
+nnoremap <silent> <Esc> :noh<Enter>
 
 " Don't switch working directories when opening files
 set noautochdir
 
 " NERDTree.vim
 :command! -nargs=* Ex NERDTree <args>
-" close vim if only window left is NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeMininmalUI=1
 let NERDTreeShowBookmarks=1
 let NERDChristmasTree=0
@@ -131,6 +128,17 @@ fun! CleanUnityLog()
 	:g/^\s*$/d
 	:g/WriteWindowsDebugString called and HOST/d
 	:g/(Filename/d
+	:g/CrossTitleContent - UpdateFHP/d
+	:g/GuiAnimClickLink/d
+	:g/<Sentient Internal/d
+	:g/: Error code 0x0: S_OK/d
+	:g/TRC/d
+	:g/Linked statically/d
+	:g/Playing animation/d
+	:g/AiEngine_MakePlayStyle/d
+	:g/Unloading . unused Assets/d
+	:g/System memory in use before/d
+	:g/New submit key =/d
  endfunction
 :command! CleanUnityLog call CleanUnityLog()
 
@@ -145,3 +153,4 @@ au BufNewFile,BufRead *.py setlocal expandtab
 " linediff.vim
 noremap \ldt :Linediff<CR>
 noremap \ldo :LinediffReset<CR>
+nnoremap gm :call cursor(0, len(getline('.'))/2)<cr>
