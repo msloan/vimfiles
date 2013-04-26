@@ -4,8 +4,12 @@ Installation:
 
 Create symlinks:
 
+    OSX
     ln -s ~/vimfiles/vimrc ~/.vimrc
     ln -s ~/vimfiles/gvimrc ~/.gvimrc
+
+    WINDOWS
+    mklink -H %USERPROFILE%/.vimrc %USERPROFILE%/vimfiles/vimrc
 
 Switch to the `~/vimfiles` directory, and fetch submodules:
 
