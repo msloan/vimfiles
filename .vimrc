@@ -109,20 +109,9 @@ let NERDTreeMininmalUI=1
 let NERDTreeShowBookmarks=1
 let NERDChristmasTree=0
 let NERDTreeChDirMode=2
-let NERDTreeIgnore=['\.meta', '\.swp']
+let NERDTreeIgnore=['\.meta', '\.swp', '\.exe']
 let g:NERDTreeDirArrows=0
 autocmd FileType nerdtree setlocal norelativenumber
-
-" AsyncCommand.vim
-:command! -nargs=* Ac AsyncCommand <args>
-nnoremap <F12> >:Ac cmd<Enter>
-:command! -nargs=* As AsyncShell <args>
-nnoremap <F12> >:As cmd<Enter>
-command! -nargs=+ -complete=file Af call s:AsyncFindstr(<q-args>)
-function! s:AsyncFindstr(query)
-    let grep_cmd = "findstr /nsi ".a:query
-    call asynccommand#run(grep_cmd, asynchandler#quickfix(&grepformat, '[Found: %s] findstr ' . a:query))
-endfunction
 
 " Reduces the noise of unity log files
 fun! CleanUnityLog()
@@ -139,7 +128,8 @@ fun! CleanUnityLog()
 	:g/AiEngine_MakePlayStyle/d
 	:g/Unloading . unused Assets/d
 	:g/System memory in use before/d
-	:g/New submit key =/d
+	:g/New submit key/d
+	:g/^Authorization:/d
  endfunction
 :command! CleanUnityLog call CleanUnityLog()
 
@@ -156,4 +146,19 @@ noremap \ldt :Linediff<CR>
 noremap \ldo :LinediffReset<CR>
 nnoremap gm :call cursor(0, len(getline('.'))/2)<cr>
 
+" Ctrl tab to cycle buffers like in msvs
 nnoremap <C-Tab> :bn<CR>
+
+" project.vim
+let g:proj_window_width = 40
+nnoremap <silent> <Leader>p :Project<CR>
+fun! FixupProject()
+	" Delete empty folders
+	let i = 0
+	while i < &fdn
+		let i += 1
+		:%s/\n.*{\n.*}//
+	endwhile
+endfunction
+:command! FixupProject silent! call FixupProject()
+let g:proj_flags="imstvcg"
