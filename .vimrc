@@ -1,8 +1,23 @@
-" setup pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+"vundle
+set nocompatible              
+filetype off                   
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+Bundle 'gmarik/vundle'
 
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'corntrace/bufexplorer'
+Bundle 'AndrewRadev/linediff.vim'
+Bundle 'vim-scripts/mru.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'shemerey/vim-project'
+Bundle 'SirVer/ultisnips'
+"end vundle
+
+filetype plugin indent on
 
 colorscheme wombat
 syntax on
@@ -36,6 +51,9 @@ set tabstop=4
 set comments=f://
 set ignorecase smartcase
 set formatoptions=cql
+
+" fugitive status line
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " dont indent public:
 set cino=g0,f
@@ -115,31 +133,39 @@ autocmd FileType nerdtree setlocal norelativenumber
 
 " Reduces the noise of unity log files
 fun! CleanUnityLog()
-	:g/^\s*$/d
-	:g/WriteWindowsDebugString called and HOST/d
-	:g/(Filename/d
-	:g/CrossTitleContent - UpdateFHP/d
-	:g/GuiAnimClickLink/d
-	:g/<Sentient Internal/d
-	:g/: Error code 0x0: S_OK/d
-	:g/TRC/d
-	:g/Linked statically/d
-	:g/Playing animation/d
-	:g/AiEngine_MakePlayStyle/d
-	:g/Unloading . unused Assets/d
-	:g/System memory in use before/d
-	:g/New submit key/d
-	:g/^Authorization:/d
+	:sil g/^\s*$/d
+	:sil g/WriteWindowsDebugString called and HOST/d
+	:sil g/(Filename/d
+	:sil g/CrossTitleContent - UpdateFHP/d
+	:sil g/GuiAnimClickLink/d
+	:sil g/<Sentient Internal/d
+	:sil g/: Error code 0x0: S_OK/d
+	:sil g/TRC/d
+	:sil g/Linked statically/d
+	:sil g/Playing animation/d
+	:sil g/AiEngine_MakePlayStyle/d
+	:sil g/Unloading . unused Assets/d
+	:sil g/System memory in use before/d
+	:sil g/New submit key/d
+	:sil g/^Authorization:/d
+	:sil g/Unused Serialized files (/d
+	:sil g/Unloading \w\+ unused Assets to/d
+	:sil g/System memory in use after/d
+	:sil g/sending \S\+ bytes from/d
+	:sil g/received \S\+ bytes from/d
+	:sil g/sending \S\+ bytes to/d
+	:sil g/received \S\+ bytes to/d
+	:sil g/The referenced script on this/d
+	:sil g/FindLiveObjects: /d
  endfunction
 :command! CleanUnityLog call CleanUnityLog()
+:au BufNewFile,BufRead *unitylog.txt call CleanUnityLog()
 
 " put current line number in buffer
 nnoremap ,n <Esc>:let @*=line(".")<CR>
 
 
 au BufNewFile,BufRead *.py setlocal expandtab
-
-" TODO: snippets for comment headers, singletons, comment lines
 
 " linediff.vim
 noremap \ldt :Linediff<CR>
@@ -163,3 +189,12 @@ endfunction
 :command! FixupProject silent! call FixupProject()
 let g:proj_flags="imstvcg"
 
+let g:UltiSnipsSnippetDirectories=["snippets","UltiSnips"]
+
+" TODO: snippets for comment headers, singletons, comment lines, fix ctrl-W,
+" c# folding
+" bug with project.vim
+" make MRU always have correct case sensitivity, fixes bug with fugitive being
+" unable to diff since it calls into git
+" UltiSnip: should have an option to configure if list is brought up when
+" duplicate snippets are detected
