@@ -9,7 +9,7 @@ Create symlinks:
     ln -s ~/vimfiles/gvimrc ~/.gvimrc
 
     WINDOWS
-    mklink -H %USERPROFILE%/.vimrc %USERPROFILE%/vimfiles/vimrc
+    mklink -H .vimrc .\vimfiles\vimrc
 
 Switch to the `~/vimfiles` directory, and fetch submodules:
 
