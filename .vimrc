@@ -162,3 +162,4 @@ fun! FixupProject()
 endfunction
 :command! FixupProject silent! call FixupProject()
 let g:proj_flags="imstvcg"
+
