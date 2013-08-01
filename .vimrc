@@ -8,10 +8,12 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-dispatch'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'corntrace/bufexplorer'
 Bundle 'AndrewRadev/linediff.vim'
 Bundle 'vim-scripts/mru.vim'
+Bundle 'vim-scripts/BufOnly.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'shemerey/vim-project'
 Bundle 'SirVer/ultisnips'
@@ -109,11 +111,6 @@ au WinEnter * call SetRNU()
 au CmdwinEnter * call SetNU()
 au CmdwinLeave * call SetRNU()
 
-" for entering/exiting command-line
-"nnoremap : :call SetNU()<Enter>:
-"cnoremap <Esc> :call SetRNU()<Enter>
-"""""""""""""""""""""""""""""""""""""""""""""
-
 
 " Esc gets rid of search highlighting
 nnoremap <silent> <Esc> :noh<Enter>
@@ -164,6 +161,18 @@ fun! CleanUnityLog()
 " put current line number in buffer
 nnoremap ,n <Esc>:let @*=line(".")<CR>
 
+"grep files in directory that are not ignored
+:command! -nargs=* Gr silent Ggrep --exclude-standard --no-index <args>
+
+" Open quick fix window after grep
+autocmd QuickFixCmdPost *grep* cwindow
+
+" cycle quick fix
+nnoremap <F8> :cn<CR>
+nnoremap <S-F8> :cp<CR>
+
+" grep word under cursor
+nnoremap <C-]> :Ggrep --exclude-standard --no-index <C-r><C-w><CR>
 
 au BufNewFile,BufRead *.py setlocal expandtab
 
@@ -187,14 +196,17 @@ fun! FixupProject()
 	endwhile
 endfunction
 :command! FixupProject silent! call FixupProject()
-let g:proj_flags="imstvcg"
+let g:proj_flags="istvcg"
 
 let g:UltiSnipsSnippetDirectories=["snippets","UltiSnips"]
 
-" TODO: snippets for comment headers, singletons, comment lines, fix ctrl-W,
+" re-source vimrc
+:command! So so $MYVIMRC
+
+" TODO: 
+" YCM
+" Search and replace with Ggrep
+" Script to update project.vim list or delete project.vim
 " c# folding
-" bug with project.vim
-" make MRU always have correct case sensitivity, fixes bug with fugitive being
-" unable to diff since it calls into git
-" UltiSnip: should have an option to configure if list is brought up when
-" duplicate snippets are detected
+" UltiSnip: should have an option to configure if list is brought up when duplicate snippets are detected
+" Need cmd for - git commit everything and create new branch to work on try something else

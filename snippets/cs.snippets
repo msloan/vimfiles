@@ -25,11 +25,76 @@ using UnityEngine;
 using System;
 using Pipeworks;
 
-public class ${1:`!p snip.rv = snip.basename`} : PWMonoBehaviour
+///////////////////////////////////////////////////////////////////////////////
+public class `!p snip.rv = snip.basename` : MonoBehaviour
 {
-} // class $1
+	$0
+} // end class `!p snip.rv = snip.basename`
+
+///////////////////////////////////////////////////////////////////////////////
 endsnippet
 
 snippet // "comment line" b
+///////////////////////////////////////////////////////////////////////////////
+endsnippet
+
+snippet unityfile "Pipeworks unityfile" b
+`!p snip.rv = _pwheader(snip.fn)`
+using UnityEngine;
+using System;
+using Pipeworks;
+
+///////////////////////////////////////////////////////////////////////////////
+public class `!p snip.rv = snip.basename`
+{
+	$0
+} // end class `!p snip.rv = snip.basename`
+
+///////////////////////////////////////////////////////////////////////////////
+endsnippet
+
+snippet //- "minor comment line" b
+//-----------------------------------------------------------------------------
+endsnippet
+
+snippet log "Debug.Log" b
+Debug.Log("$1");
+endsnippet
+
+snippet trace "PwkDebug.Trace" b
+PwkDebug.Trace("$1");
+endsnippet
+
+snippet br "Brackets" b
+{
+	$1
+}
+endsnippet
+
+snippet fore "foreach loop" b
+foreach (var ${2:item} in ${1:items})
+{
+	${VISUAL}$0
+}
+endsnippet
+
+snippet #r "#region #endregion" b
+#region ${1:Region}
+${VISUAL}$0
+#endregion
+endsnippet
+
+snippet copy "Copyright header" b
+///////////////////////////////////////////////////////////////////////////////
+//
+//	`!p snip.rv = snip.basename`
+//
+//	Copyright (c) 2012-2013, Foundation 9 Entertainment.
+//	All rights reserved.
+//
+///////////////////////////////////////////////////////////////////////////////
+//
+// 	$0 
+//
 ///////////////////////////////////////////////////////////////////////////////
 endsnippet
