@@ -1,5 +1,5 @@
 "vundle
-set nocompatible              
+set nocompatible
 filetype off                   
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
@@ -210,3 +210,4 @@ let g:UltiSnipsSnippetDirectories=["snippets","UltiSnips"]
 " c# folding
 " UltiSnip: should have an option to configure if list is brought up when duplicate snippets are detected
 " Need cmd for - git commit everything and create new branch to work on try something else
+
