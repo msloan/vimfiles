@@ -17,6 +17,8 @@ Bundle 'vim-scripts/BufOnly.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'shemerey/vim-project'
 Bundle 'SirVer/ultisnips'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'scrooloose/syntastic'
 "end vundle
 
 filetype plugin indent on
