@@ -205,6 +205,10 @@ endfunction
 let g:proj_flags="istvcg"
 
 let g:UltiSnipsSnippetDirectories=["snippets","UltiSnips"]
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
 
 " re-source vimrc
 :command! So so $MYVIMRC
