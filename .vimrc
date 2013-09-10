@@ -1,22 +1,24 @@
-"vundle
-set nocompatible              
+"undle
+set nocompatible
 filetype off                   
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 Bundle 'gmarik/vundle'
+Bundle 'AndrewRadev/linediff.vim'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'SirVer/ultisnips'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'corntrace/bufexplorer'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'shemerey/vim-project'
+Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-dispatch'
-Bundle 'tpope/vim-markdown'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'corntrace/bufexplorer'
-Bundle 'AndrewRadev/linediff.vim'
-Bundle 'vim-scripts/mru.vim'
 Bundle 'vim-scripts/BufOnly.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'shemerey/vim-project'
-Bundle 'SirVer/ultisnips'
+Bundle 'vim-scripts/mru.vim'
 "end vundle
 
 filetype plugin indent on
@@ -85,8 +87,8 @@ set autoread
 " Treat pw script files as c files
 au BufNewFile,BufRead *.scr set filetype=c
 
-au BufNewFile,BufRead *.html set syn=markdown
-
+" Use markdown syntax in html files for use with strapdown.js
+au BufNewFile,BufRead *.html set syntax=markdown
 """""""""""""""""""""""""""""""""""""""""""""
 " Setup relative line mapping
 fun! SetRNU()
@@ -200,6 +202,10 @@ endfunction
 let g:proj_flags="istvcg"
 
 let g:UltiSnipsSnippetDirectories=["snippets","UltiSnips"]
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
 
 " re-source vimrc
 :command! So so $MYVIMRC
