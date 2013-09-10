@@ -1,4 +1,4 @@
-"vundle
+"undle
 set nocompatible
 filetype off                   
 set rtp+=~/.vim/bundle/vundle
@@ -9,6 +9,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-markdown'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'corntrace/bufexplorer'
 Bundle 'AndrewRadev/linediff.vim'
@@ -87,6 +88,9 @@ set autoread
 
 " Treat pw script files as c files
 au BufNewFile,BufRead *.scr set filetype=c
+
+" Use markdown syntax in html files for use with strapdown.js
+au BufNewFile,BufRead *.html set syntax=markdown
 
 """""""""""""""""""""""""""""""""""""""""""""
 " Setup relative line mapping
