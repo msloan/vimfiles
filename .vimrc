@@ -4,11 +4,11 @@ filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 Bundle 'gmarik/vundle'
-
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-markdown'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'corntrace/bufexplorer'
 Bundle 'AndrewRadev/linediff.vim'
@@ -59,7 +59,6 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " dont indent public:
 set cino=g0,f
-"autocmd BufEnter * lcd %:p:h
 
 hi Cursor guibg=red 
 hi Cursor guifg=white 
@@ -85,6 +84,8 @@ set autoread
 
 " Treat pw script files as c files
 au BufNewFile,BufRead *.scr set filetype=c
+
+au BufNewFile,BufRead *.html set syn=markdown
 
 """""""""""""""""""""""""""""""""""""""""""""
 " Setup relative line mapping
@@ -172,7 +173,7 @@ nnoremap <F8> :cn<CR>
 nnoremap <S-F8> :cp<CR>
 
 " grep word under cursor
-nnoremap <C-]> :Ggrep --exclude-standard --no-index <C-r><C-w><CR>
+nnoremap <C-]> :silent Ggrep --exclude-standard --no-index <C-r><C-w><CR>
 
 au BufNewFile,BufRead *.py setlocal expandtab
 
@@ -210,3 +211,5 @@ let g:UltiSnipsSnippetDirectories=["snippets","UltiSnips"]
 " c# folding
 " UltiSnip: should have an option to configure if list is brought up when duplicate snippets are detected
 " Need cmd for - git commit everything and create new branch to work on try something else
+" Figure out case sensitivity problem with fugitive
+
