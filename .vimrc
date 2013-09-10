@@ -5,21 +5,21 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-dispatch'
-Bundle 'tpope/vim-markdown'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'corntrace/bufexplorer'
 Bundle 'AndrewRadev/linediff.vim'
-Bundle 'vim-scripts/mru.vim'
-Bundle 'vim-scripts/BufOnly.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'shemerey/vim-project'
+Bundle 'Lokaltog/vim-easymotion'
 Bundle 'SirVer/ultisnips'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'corntrace/bufexplorer'
+Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
+Bundle 'shemerey/vim-project'
+Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'vim-scripts/BufOnly.vim'
+Bundle 'vim-scripts/mru.vim'
 "end vundle
 
 filetype plugin indent on
