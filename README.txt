@@ -6,7 +6,7 @@
     ln -s ~/vimfiles/ ~/.vim
 
     WINDOWS
-    mklink -H .vimrc .\vimfiles\vimrc
+    mklink /H .vimrc .\vimfiles\vimrc
 
 3. git clone git://github.com/gmarik/vundle ~/vimfiles/bundle
 
