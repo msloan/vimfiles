@@ -56,6 +56,8 @@ set comments=f://
 set ignorecase smartcase
 set formatoptions=cql
 
+let g:ycm_csharp_server_port = 49742
+
 " fugitive status line
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
@@ -178,6 +180,10 @@ nnoremap <S-F8> :cp<CR>
 nnoremap <C-]> :silent Ggrep --exclude-standard --no-index <C-r><C-w><CR>
 
 au BufNewFile,BufRead *.py setlocal expandtab
+augroup Debug
+  autocmd!
+  autocmd filetype python  nnoremap <buffer> <F5> :Start python -m pdb %<cr>
+augroup END
 
 " linediff.vim
 noremap \ldt :Linediff<CR>
@@ -186,6 +192,11 @@ nnoremap gm :call cursor(0, len(getline('.'))/2)<cr>
 
 " Ctrl tab to cycle buffers like in msvs
 nnoremap <C-Tab> :bn<CR>
+
+augroup Debug
+	autocmd!
+	autocmd filetype python nnoremap <buffer> <F5> 	:Start python -m pdb %<CR>
+augroup END
 
 " project.vim
 let g:proj_window_width = 40
@@ -205,7 +216,6 @@ let g:UltiSnipsSnippetDirectories=["snippets","UltiSnips"]
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
 
 " re-source vimrc
 :command! So so $MYVIMRC

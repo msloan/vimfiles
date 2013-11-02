@@ -93,6 +93,28 @@ foreach (var ${2:item} in ${1:items})
 }
 endsnippet
 
+snippet pv "public void()" b
+public void ${1:MethodName}()
+{
+	$0
+}
+endsnippet
+
+snippet pb "public bool()" b
+public bool ${1:MethodName}()
+{
+	$0
+}
+endsnippet
+
+snippet pi "public int()" b
+public int ${1:MethodName}()
+{
+	$0
+}
+endsnippet
+
+
 snippet #r "#region #endregion" b
 #region ${1:Region}
 ${VISUAL}$0
