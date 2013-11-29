@@ -1,7 +1,7 @@
 "undle
 set nocompatible
 filetype off                   
-set rtp+=~/.vim/bundle/vundle
+set rtp+=~/vimfiles/bundle/vundle
 call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'AndrewRadev/linediff.vim'
