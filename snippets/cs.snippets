@@ -115,6 +115,22 @@ public int ${1:MethodName}()
 endsnippet
 
 
+snippet log1 "log 1 params" b
+Debug.LogFormat("$1={0}", $1);
+endsnippet
+
+snippet log2 "log 2 params" b
+Debug.LogFormat("$1={0}, $2={1}", $1, $2);
+endsnippet
+
+snippet log3 "log 3 params" b
+Debug.LogFormat("$1={0}, $2={1}, $3={2}", $1, $2, $3);
+endsnippet
+
+snippet log4 "log 4 params" b
+Debug.LogFormat("$1={0}, $2={1}, $3={2}, $4={3}", $1, $2, $3, $4);
+endsnippet
+
 snippet #r "#region #endregion" b
 #region ${1:Region}
 ${VISUAL}$0

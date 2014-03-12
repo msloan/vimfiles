@@ -7,11 +7,10 @@ Bundle 'gmarik/vundle'
 Bundle 'AndrewRadev/linediff.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'SirVer/ultisnips'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'msloan/YouCompleteMe'
 Bundle 'corntrace/bufexplorer'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'shemerey/vim-project'
 Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
@@ -25,6 +24,8 @@ filetype plugin indent on
 
 colorscheme wombat
 syntax on
+set undofile
+set undodir=C:\temp
 set autochdir
 set noexpandtab
 set cursorline
@@ -79,7 +80,12 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 50 
 let g:netrw_keepdir = 0
 
-set foldmethod=syntax
+" Don't screw up folds when inserting text that might affect them, until
+" leaving insert mode. Foldmethod is local to the window. Protect against
+" screwing up folding when switching between windows.
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
 set foldlevel=999
 set foldminlines=5
 
@@ -198,20 +204,6 @@ augroup Debug
 	autocmd filetype python nnoremap <buffer> <F5> 	:Start python -m pdb %<CR>
 augroup END
 
-" project.vim
-let g:proj_window_width = 40
-nnoremap <silent> <Leader>p :Project<CR>
-fun! FixupProject()
-	" Delete empty folders
-	let i = 0
-	while i < &fdn
-		let i += 1
-		:%s/\n.*{\n.*}//
-	endwhile
-endfunction
-:command! FixupProject silent! call FixupProject()
-let g:proj_flags="istvcg"
-
 let g:UltiSnipsSnippetDirectories=["snippets","UltiSnips"]
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -220,12 +212,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " re-source vimrc
 :command! So so $MYVIMRC
 
+:command! Sh Start conemu /cmd powershell.exe -noexit -command "cd "%:p:h
+let g:ycm_global_ycm_extra_conf = 'C:\Users\msloan\.vim\bundle\YouCompleteMe\cpp\ycm\.ycm_extra_conf.py'
 " TODO: 
-" YCM
-" Search and replace with Ggrep
-" Script to update project.vim list or delete project.vim
 " c# folding
 " UltiSnip: should have an option to configure if list is brought up when duplicate snippets are detected
-" Need cmd for - git commit everything and create new branch to work on try something else
 " Figure out case sensitivity problem with fugitive
-
