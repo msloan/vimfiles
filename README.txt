@@ -1,4 +1,4 @@
-1. git clone git://github.com/msloan/vimfiles.git ~/vimfiles
+1. git clone --recursive git://github.com/msloan/vimfiles.git ~/vimfiles
 
 2. Create symlinks:
 
@@ -6,8 +6,8 @@
     ln -s ~/vimfiles/ ~/.vim
 
     WINDOWS
-    mklink /H .vimrc .\vimfiles\vimrc
+    mklink /H _vimrc .\vimfiles\vimrc
 
-3. git clone git://github.com/gmarik/vundle ~/vimfiles/bundle
+3. Make sure the path to bundles is set correctly in vimrc.
 
-3. Run :BundleInstall in vim.
+4. Run :BundleInstall in vim.
