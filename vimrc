@@ -1,8 +1,9 @@
-"undle
+"vundle
 set nocompatible
 filetype off                   
 set rtp+=~/vimfiles/bundle/vundle
-call vundle#rc()
+let path='~/vimfiles/bundle'
+call vundle#rc(path)
 Bundle 'gmarik/vundle'
 Bundle 'AndrewRadev/linediff.vim'
 Bundle 'Lokaltog/vim-easymotion'
@@ -60,7 +61,7 @@ set formatoptions=cql
 let g:ycm_csharp_server_port = 49742
 
 " fugitive status line
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " dont indent public:
 set cino=g0,f
