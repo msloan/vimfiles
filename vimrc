@@ -58,7 +58,10 @@ set comments=f://
 set ignorecase smartcase
 set formatoptions=cql
 
+" YCM
 let g:ycm_csharp_server_port = 49742
+let g:ycm_filetype_specific_completion_to_disable = []
+let g:ycm_filetype_blacklist = {'html':1}
 
 " fugitive status line
 "set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -205,7 +208,7 @@ augroup Debug
 	autocmd filetype python nnoremap <buffer> <F5> 	:Start python -m pdb %<CR>
 augroup END
 
-let g:UltiSnipsSnippetDirectories=["snippets","UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["mySnippets","UltiSnips"]
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
@@ -219,3 +222,6 @@ let g:ycm_global_ycm_extra_conf = 'C:\Users\msloan\.vim\bundle\YouCompleteMe\cpp
 " c# folding
 " UltiSnip: should have an option to configure if list is brought up when duplicate snippets are detected
 " Figure out case sensitivity problem with fugitive
+" Fix ultisnip
+" use makerpg
+" grep
