@@ -27,4 +27,4 @@
 	url = http://github.com/shemerey/vim-project.git
 [submodule "bundle/vundle"]
 	path = bundle/vundle
-	url = git://github.com/VundleVim/Vundle
+	url = http://github.com/VundleVim/Vundle.git
